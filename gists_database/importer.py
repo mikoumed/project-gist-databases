@@ -4,6 +4,8 @@ def import_gists_to_database(db, username, commit=True):
     
     url = 'https://api.github.com/users/{username}/gists'
     response = requests.get(url.format(username=username))
+    response.raise_for_status()
+    
     gists = response.json()
 
     for gist in gists:
